@@ -1,6 +1,6 @@
 'use client'
 import {useState} from 'react'
-import signUp from "@/firebase/auth/signup"
+import {signUp} from "@/firebase/auth/signup"
 import {useRouter} from 'next/navigation'
 
 
@@ -12,7 +12,8 @@ export default function Home() {
     event.preventDefault();
     const {result, error} = await signUp();
     if (error)
-      return console.log(error);
+      return console.error(error);
+      (error);
     console.log(result)
     return router.push("user-pages/leaderboard")
   }

@@ -1,6 +1,7 @@
 'use client'
 import { useAuthContext } from '@/context/AuthContext'
 import { useRouter } from 'next/navigation';
+import { signOutUser} from '@/firebase/auth/signup'
 import { User} from 'firebase/auth'
 import { useEffect } from 'react';
 
@@ -10,15 +11,19 @@ const first_component = () => {
     
 
     useEffect(() => {
-        if (user==null)
+        if (user==null) {
+            console.log("Sign out redirect triggered")
             router.push("/");
-        console.log(user)    
+            
+        }
+         
         
     }, [user])
     
     return (
         <div>
             <h1>The best around around</h1>
+            <button onClick={signOutUser}>Sign Out</button>
         </div>
     )
     

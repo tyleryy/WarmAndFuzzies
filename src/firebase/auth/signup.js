@@ -1,11 +1,11 @@
 import firebase_app from '../config';
-import {getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 
 const provider = new GoogleAuthProvider();
 console.log(firebase_app)
 const auth = getAuth(firebase_app);
 
-export default async function signUp() {
+export async function signUp() {
     let result = null,
         error = null;
     try {
@@ -15,4 +15,18 @@ export default async function signUp() {
     }
 
     return { result, error };
+}
+
+export const signOutUser = async () => {
+    let result = null,
+    error = null;
+
+    try {
+        result = await signOut(auth);
+        console.log(result)
+    } catch (e) {
+        error = e
+        console.log(e)
+    }
+    return { result, error }
 }
