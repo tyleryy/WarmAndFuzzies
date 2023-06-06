@@ -2,6 +2,7 @@
 import {useState} from 'react'
 import {signUp} from "@/firebase/auth/signup"
 import {useRouter} from 'next/navigation'
+import addData from '@/firebase/firestore/addData'
 
 
 export default function Home() {
@@ -10,12 +11,20 @@ export default function Home() {
 
   const handleSignIn = async (event: any) => {
     event.preventDefault();
-    const {result, error} = await signUp();
+    let {result, error} = await signUp();
     if (error)
       return console.error(error);
-      (error);
-    console.log(result)
-    return router.push("user-pages/leaderboard")
+    const displayName = result?.user.displayName;
+    const email = result?.user.email;
+    const uid = result?.user.uid;
+    let {result: db_result, error: db_error} = await addData("warm-fuzzies", uid, 
+      {"name": displayName, "email": email, "uid": uid}
+    )
+
+    if (db_error)
+      return console.error(db_error)
+      
+    return router.push(`user-pages/checklist/${uid}`)
   }
 
   return (
