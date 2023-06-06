@@ -17,7 +17,8 @@ function CheckList() {
   useEffect( () => {
     const getMembers = async () => {
       let {result, error} = await getData("warm-fuzzies", user.uid);
-      if (!result) {
+      if (result === undefined) {
+
         ({result, error} = await getData("hack-members", "members"));
         result = result?.members?.map((element: string, index: number) => {
           return {"label": element, "id": index, "color": color[index%color.length], "checked": false}
@@ -28,7 +29,6 @@ function CheckList() {
       if (error) {
         return console.log(error)
       }
-      console.log(result)
       setCheckBoxes(result);
     }
 

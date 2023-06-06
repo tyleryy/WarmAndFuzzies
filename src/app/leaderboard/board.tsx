@@ -10,6 +10,7 @@ import {
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { getAllMembers } from '@/firebase/firestore/getData';
+import { useEffect, useState, useLayoutEffect } from 'react';
 
   export const options = {
     responsive: true,
@@ -19,7 +20,7 @@ import { getAllMembers } from '@/firebase/firestore/getData';
       },
       title: {
         display: true,
-        text: 'Warmest and Fuzziest',
+        text: 'Warmest and Fuzziest ( Top 3 )',
       },
     },
   };
@@ -33,24 +34,42 @@ import { getAllMembers } from '@/firebase/firestore/getData';
     Legend
   );
 
-  
+  // TODO possibly use ISR for this leaderboard
   const Leaderboard = () => {
-    
-    const labels = getAllMembers("warm-fuzzies");
-    console.log(labels)
-    const data = {
-      labels,
-      datasets: [
-        {
-          label: 'Dataset 1',
-          data: labels.map(() => 599),
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-      ],
-    };
+    const [leaders, setLeaders] = useState([]);
 
+    // type checkbox = {id: number, label: string, color: string, checked: boolean}
+    useEffect(() => {
+      const getLeaders = async () => {
+        const result : void | { output: any[]; error: null; } = await getAllMembers("warm-fuzzies");
+        const top_three = result.output.slice(0,3)
+        // const names = top_three.map((elem) => { return elem.user})
+        // const no_names = top_three.map((elem) => { return elem.data})
+        console.log(top_three)
+        setLeaders(top_three)
+      }
+
+      getLeaders()
+    }, [])
+    // useEffect(() => {
+    //   console.log(leaders)
+    //   setnames(leaders.map((elem) => elem.label))
+    // }, [leaders])
+    
   return (
-    <Bar options={options} data={data}></Bar>
+    <div>
+
+      <Bar options={options} data={{
+        labels: leaders.map((elem)=> elem.user_data.name),
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: leaders.map((elem)=> elem.data.length),
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          },
+        ],
+      }}></Bar>
+    </div>
   )
 }
 

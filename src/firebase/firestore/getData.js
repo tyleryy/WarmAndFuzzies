@@ -1,3 +1,4 @@
+import { getAuth } from "firebase/auth";
 import firebase_app from "../config";
 import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore";
 
@@ -17,7 +18,39 @@ export default async function getDocument(collection, id) {
     return { result, error };
 }
 
-export async function getAllMembers(collection) {
-    const snapshot = await getDocs(collection(db, collection));
-    return snapshot.data()
+export async function getAllMembers(collect) {
+    let result = null;
+    let error = null;
+    let output = [];
+    
+    try {
+        result = await getDocs(collection(db, collect));
+        result = result.docs.map((doc) => {return {"checklist": doc.data(), "user": doc.id}}) 
+        // console.log(result) 
+
+        for (let doc of result) { // ! async calls don't work in a forEach loop, so opted for traditional
+            // console.log(doc)
+            let user_data = (await getDocument("users",doc.user)).result
+            let payload = {"data": doc.checklist.data.filter((elem) => {
+                return elem.checked;
+            }),
+            "user_data": user_data}
+
+            output.push(
+                payload
+            )
+            // console.log(output)   
+        }
+
+    } catch (e) {
+        error = e;
+        return console.log(error)
+        
+    }
+
+    output?.sort((elem, elem2) => { return elem2.data.length - elem.data.length})
+    if (output.length >= 2)
+        [output[0], output[1]] = [output[1], output[0]]
+    // console.log(output)
+    return {output, error};
 }

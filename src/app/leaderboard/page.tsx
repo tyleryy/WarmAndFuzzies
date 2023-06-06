@@ -5,11 +5,10 @@ import Leaderboard from './board';
 
 
 const leaderboard = () => {
-    
-    
+    const router = useRouter();
     return (
         <div>
-            <h1>The best around around</h1>
+            <button onClick={() => router.push("/")}>Login Page</button>
             <Leaderboard/>
         </div>
     )
