@@ -17,13 +17,13 @@ export default function Home() {
     const displayName = result?.user.displayName;
     const email = result?.user.email;
     const uid = result?.user.uid;
-    let {result: db_result, error: db_error} = await addData("warm-fuzzies", uid, 
+    let {result: db_result, error: db_error} = await addData("warm-fuzzies", uid,
       {"name": displayName, "email": email, "uid": uid}
     )
 
     if (db_error)
       return console.error(db_error)
-      
+
     return router.push(`user-pages/checklist/${uid}`)
   }
 
