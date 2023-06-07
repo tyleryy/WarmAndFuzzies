@@ -41,7 +41,7 @@ import { useEffect, useState, useLayoutEffect } from 'react';
     // type checkbox = {id: number, label: string, color: string, checked: boolean}
     useEffect(() => {
       const getLeaders = async () => {
-        const result : void | { output: any[]; error: null; } = await getAllMembers("warm-fuzzies");
+        const result : any = await getAllMembers("warm-fuzzies");
         const top_three = result.output.slice(0,3)
         // const names = top_three.map((elem) => { return elem.user})
         // const no_names = top_three.map((elem) => { return elem.data})
