@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, Suspense} from 'react'
 
 export default function Cube3D () {
-    const ref = useRef()
+    const ref: any = useRef()
     useFrame(() => (ref.current.rotation.x = ref.current.rotation.y += 0.01))
     
     return (
