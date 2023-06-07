@@ -8,14 +8,14 @@ import CheckList from './checklist';
 
 
 
-const checklist = ({ params }: any) => {
+const Checklist_Page = ({ params }: any) => {
     const user_id = params.id;
     const router = useRouter();
     const user : any = useAuthContext();
     const [username, changeUsername] = useState("");
     
     useEffect(() => {
-        if (user==null) {
+        if (user===null) {
             // console.log("Sign out redirect triggered");
             router.push("/");
         } else {
@@ -38,4 +38,4 @@ const checklist = ({ params }: any) => {
 
 };
 
-export default checklist;
+export default Checklist_Page;
