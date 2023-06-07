@@ -63,7 +63,7 @@ import { useEffect, useState, useLayoutEffect } from 'react';
         labels: leaders.map((elem)=> elem.user_data.name),
         datasets: [
           {
-            label: 'Dataset 1',
+            label: "# of Warm&Fuzzies completed",
             data: leaders.map((elem)=> elem.data.length),
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },

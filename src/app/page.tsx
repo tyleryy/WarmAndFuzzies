@@ -26,6 +26,7 @@ export default function Home() {
         <div className="form-wrapper">
             <button onClick={handleSignIn}>Sign up</button>
         </div>
+        <button onClick={()=> {router.push("/leaderboard")}}>Leaderboard</button>
       </div>
     </main>
   )
