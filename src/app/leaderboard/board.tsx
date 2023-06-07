@@ -41,12 +41,14 @@ import { useEffect, useState, useLayoutEffect } from 'react';
     // type checkbox = {id: number, label: string, color: string, checked: boolean}
     useEffect(() => {
       const getLeaders = async () => {
-        const result : any = await getAllMembers("warm-fuzzies");
-        const top_three = result.output.slice(0,3)
-        // const names = top_three.map((elem) => { return elem.user})
-        // const no_names = top_three.map((elem) => { return elem.data})
-        console.log(top_three)
-        setLeaders(top_three)
+        const result : void | { output: any[], error: null } = await getAllMembers("warm-fuzzies");
+        if (result) {
+          const top_three : any = result.output.slice(0,3)
+          // const names = top_three.map((elem) => { return elem.user})
+          // const no_names = top_three.map((elem) => { return elem.data})
+          console.log(top_three)
+          setLeaders(top_three)
+        }
       }
 
       getLeaders()
@@ -60,11 +62,11 @@ import { useEffect, useState, useLayoutEffect } from 'react';
     <div>
 
       <Bar options={options} data={{
-        labels: leaders.map((elem)=> elem.user_data.name),
+        labels: leaders.map((elem: any)=> elem.user_data.name),
         datasets: [
           {
             label: "# of Warm&Fuzzies completed",
-            data: leaders.map((elem)=> elem.data.length),
+            data: leaders.map((elem: any)=> elem.data.length),
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },
         ],

@@ -10,13 +10,13 @@ import { User } from 'firebase/auth';
 function CheckList() {
   // const [checkedItems, setCheckedItems] = useState([]);
   const [checkboxes, setCheckBoxes] = useState([]);
-  const user : User | {} = useAuthContext();
+  const user : any = useAuthContext();
 
   const color = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500']
 
   useEffect( () => {
     const getMembers = async () => {
-      let {result, error} = await getData("warm-fuzzies", user.uid);
+      let {result, error}: any = await getData("warm-fuzzies", user.uid);
       if (result === undefined) {
 
         ({result, error} = await getData("hack-members", "members"));
@@ -44,10 +44,11 @@ function CheckList() {
   const handleCheckboxChange = (event: any) => {
     // console.log(event.target);
     const { id, checked } = event.target;
-    setCheckBoxes((prevCheckedItems: any) => {
-      let checkbox = prevCheckedItems.find((elem: checkbox ) => {
+    setCheckBoxes((prevCheckedItems) => {
+      let checkbox: any = prevCheckedItems.find((elem: checkbox ) => {
         return +id === elem.id;
       })
+
       checkbox.checked = checked;
       addData("warm-fuzzies", user.uid, {"data": prevCheckedItems})
       return [...prevCheckedItems];

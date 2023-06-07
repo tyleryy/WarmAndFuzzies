@@ -25,12 +25,17 @@ export async function getAllMembers(collect) {
     
     try {
         result = await getDocs(collection(db, collect));
+        // user has doc_id first
+        // checklist = each pure warm and fuzzies doc (each checkmark)
         result = result.docs.map((doc) => {return {"checklist": doc.data(), "user": doc.id}}) 
         // console.log(result) 
 
         for (let doc of result) { // ! async calls don't work in a forEach loop, so opted for traditional
             // console.log(doc)
-            let user_data = (await getDocument("users",doc.user)).result
+            let user_data = (await getDocument("users",doc.user)).result;
+            user_data["uid"] = doc.id;
+            // user data = Google auth creds
+            // checklist = only checked marked boxes
             let payload = {"data": doc.checklist.data.filter((elem) => {
                 return elem.checked;
             }),

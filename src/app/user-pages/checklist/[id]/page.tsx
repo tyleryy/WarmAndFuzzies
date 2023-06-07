@@ -11,7 +11,7 @@ import CheckList from './checklist';
 const checklist = ({ params }: any) => {
     const user_id = params.id;
     const router = useRouter();
-    const user : User | {} = useAuthContext();
+    const user : any = useAuthContext();
     const [username, changeUsername] = useState("");
     
     useEffect(() => {
