@@ -74,9 +74,9 @@ import { useEffect, useState } from 'react';
             label: "# of Warm&Fuzzies completed",
             data: leaders.map((elem: any)=> elem.data.length),
             backgroundColor: 'rgba(34, 211, 238, 0.8)',
-            borderColor: 'black',
-            borderWidth: 4,
-            borderRadius: 5
+            borderColor:"black",
+            borderWidth:2,
+            borderRadius:5
           },
         ],
       }}></Bar>
