@@ -48,6 +48,7 @@ const Checklist_Page = ({ params }: any) => {
         <div id="checkboxes" className='flex min-h-screen flex-col justify-start items-center'>
             <label className="block underline text-6xl font-semi-bold mb-8">Warm and Fuzzies</label>
             <CheckList/>
+            <span className="p-0 opacity-70 mt-3">Once you have completed your Warm & Fuzzies for someone, check them off here!</span>
         </div>
         </div>
     )
