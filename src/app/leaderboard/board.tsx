@@ -67,16 +67,16 @@ import { useEffect, useState } from 'react';
   return (
     <div className='inline relative top-8'>
 
-      <Bar className=' bg-gray-500 bg-opacity-10 text-white' options={options} data={{
+      <Bar className=' bg-gray-300 bg-opacity-20 text-white m-10 border-white border-2 border-dotted' options={options} data={{
         labels: leaders.map((elem: any)=> elem.user_data.name),
         datasets: [
           {
             label: "# of Warm&Fuzzies completed",
             data: leaders.map((elem: any)=> elem.data.length),
             backgroundColor: 'rgba(34, 211, 238, 0.8)',
-            borderColor: 'white',
-            borderWidth: 2,
-            borderRadius: 20
+            borderColor: 'black',
+            borderWidth: 4,
+            borderRadius: 5
           },
         ],
       }}></Bar>
