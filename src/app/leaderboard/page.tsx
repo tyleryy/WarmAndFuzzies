@@ -14,7 +14,7 @@ const leaderboard = () => {
                 hover:opacity-80
                 active:opacity-50
                 flex-shrink-0 
-                transition-all duration-75 ease-in-out" onClick={() => router.push("/")}>Back</button>
+                transition-all duration-75 ease-in-out z-10 inline" onClick={() => router.push("/")}>Back</button>
             <Leaderboard/>
         </div>
     )

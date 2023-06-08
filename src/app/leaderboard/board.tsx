@@ -10,10 +10,16 @@ import {
   } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { getAllMembers } from '@/firebase/firestore/getData';
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useEffect, useState } from 'react';
 
   export const options = {
     responsive: true,
+    elements: {
+      bar: {
+        borderWidth: 10,
+        backgroundColor: 'rgba(0, 255, 0, 0.5)',
+      }
+    },
     plugins: {
       legend: {
         position: 'top' as const,
@@ -59,15 +65,18 @@ import { useEffect, useState, useLayoutEffect } from 'react';
     // }, [leaders])
     
   return (
-    <div>
+    <div className='inline relative top-8'>
 
-      <Bar options={options} data={{
+      <Bar className=' bg-gray-500 bg-opacity-10 text-white' options={options} data={{
         labels: leaders.map((elem: any)=> elem.user_data.name),
         datasets: [
           {
             label: "# of Warm&Fuzzies completed",
             data: leaders.map((elem: any)=> elem.data.length),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(34, 211, 238, 0.8)',
+            borderColor: 'white',
+            borderWidth: 2,
+            borderRadius: 20
           },
         ],
       }}></Bar>
