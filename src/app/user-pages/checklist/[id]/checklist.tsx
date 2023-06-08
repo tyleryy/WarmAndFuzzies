@@ -57,9 +57,9 @@ function CheckList() {
   };
 
   return (
-    <div className=" bg-pink-300 inline-block p-6">
+    <div className=" bg-gray-800 bg-opacity-50 border-solid border border-gray-500 inline-block p-6 grid-cols-3 grid gap-2b">
       {checkboxes.map((checkbox: checkbox) => (
-        <div key={checkbox.id} className="flex items-center mb-2 bg-teal-300 p-2">
+        <div key={checkbox.id} className="flex items-center mb-2 p-2">
           <input
             type="checkbox"
             id={checkbox.id.toString()}
