@@ -67,7 +67,7 @@ import { useEffect, useState } from 'react';
   return (
     <div className='inline relative top-8'>
 
-      <Bar className=' bg-gray-300 bg-opacity-20 text-white m-10 border-white border-2 border-dotted' options={options} data={{
+      <Bar className=' bg-gray-300 bg-opacity-20 text-white m-10 border-white border-2 border-opacity-50 rounded-sm border-double' options={options} data={{
         labels: leaders.map((elem: any)=> elem.user_data.name),
         datasets: [
           {
