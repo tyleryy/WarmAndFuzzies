@@ -79,6 +79,10 @@ export default function Home() {
           >
           <Cube3D/>
         </Canvas>
+        <span className="flex justify-center text-gray-50 
+          opacity-30 text-sm relative"
+          >Click the Cube!
+        </span>
       </div>
     </div>
     
