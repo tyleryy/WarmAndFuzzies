@@ -18,10 +18,9 @@ function CheckList() {
     const getMembers = async () => {
       let {result, error}: any = await getData("warm-fuzzies", user.uid);
       if (result === undefined) {
-
         ({result, error} = await getData("hack-members", "members"));
         result = result?.members?.map((element: string, index: number) => {
-          return {"label": element, "id": index, "color": color[index%color.length], "checked": false}
+          return {"label": element, "id": index, "checked": false}
         })
       } else {
         result = result.data;
@@ -58,7 +57,7 @@ function CheckList() {
 
   return (
     <div className=" bg-gray-800 bg-opacity-50 border-solid border border-gray-500 inline-block p-6 grid-cols-3 grid gap-2b">
-      {checkboxes.map((checkbox: checkbox) => (
+      {checkboxes.map((checkbox: checkbox, index: number) => (
         <div key={checkbox.id} className="flex items-center mb-2 p-2">
           <input
             type="checkbox"
@@ -69,7 +68,7 @@ function CheckList() {
           />
           <label
             htmlFor={checkbox.id.toString()}
-            className={`px-2 py-1 rounded text-white ${checkbox.color}`}
+            className={`px-2 py-1 rounded text-white ${color[index%color.length]}`}
           >
             {checkbox.label}
           </label>
