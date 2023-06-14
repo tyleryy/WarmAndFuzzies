@@ -56,7 +56,9 @@ function CheckList() {
   };
 
   return (
-    <div className=" bg-gray-800 bg-opacity-50 border-solid border border-gray-500 inline-block p-6 grid-cols-3 grid gap-2b">
+    checkboxes.length > 0 && <div className="flex flex-col align-middle justify-center">
+    <span className="p-0 opacity-70 text-center">Once you have completed your Warm & Fuzzies for someone, check them off here!</span>
+    <div className=" bg-gray-800 bg-opacity-50 border-solid border border-gray-500 p-6 grid-cols-3 grid gap-2b">
       {checkboxes.map((checkbox: checkbox, index: number) => (
         <div key={checkbox.id} className="flex items-center mb-2 p-2">
           <input
@@ -74,6 +76,7 @@ function CheckList() {
           </label>
         </div>
       ))}
+    </div>
     </div>
   );
 }

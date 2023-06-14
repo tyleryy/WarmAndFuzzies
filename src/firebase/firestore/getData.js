@@ -18,6 +18,19 @@ export default async function getDocument(collection, id) {
     return { result, error };
 }
 
+export async function getAllDocs(collection_name) {
+    let result = [];
+    let error = null;
+    try {
+        result = await getDocs(collection(db, collection_name));
+    } catch (e) {
+        error = e;
+    }
+    result = result.docs.map((elem) => {return {id: elem.id, ...elem.data()} })
+    return {result, error};
+}
+
+// ! very terrible, not efficient needs rework
 export async function getAllMembers(collect) {
     let result = null;
     let error = null;

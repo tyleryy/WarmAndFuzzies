@@ -7,6 +7,7 @@ import CheckList from './checklist';
 import {GrMail} from 'react-icons/gr'
 import {BsSendPlus, BsListCheck} from 'react-icons/bs'
 import Icon_Button from './icon_button';
+import SendNotes from './notes';
 
 
 
@@ -15,7 +16,8 @@ const Checklist_Page = ({ params }: any) => {
     const router = useRouter();
     const user : any = useAuthContext();
     const [username, changeUsername] = useState("");
-    
+    const [pageState, changePage] = useState("checklist");
+
     useEffect(() => {
         if (user===null) {
             // console.log("Sign out redirect triggered");
@@ -28,20 +30,20 @@ const Checklist_Page = ({ params }: any) => {
     // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     
     return (
-        <div className='mb-1'>
+        <div>
 
         <div className="flex absolute top-0 right-0 justify-center align-middle
         space-x-10 mb-2 p-3 mr-2 ml-2 mt-2 bg-gray-500 
-        bg-opacity-20 w-1/5 border-white border border-opacity-30">
-            <div className='flex justify-end flex-row space-x-10'>
+        bg-opacity-20 min-w-1/5 border-white border border-opacity-30 flex-shrink-0">
+            <div className='flex justify-end flex-row space-x-10 flex-shrink-0'>
                 <div className='space-x-5'>
-                    <Icon_Button>
+                    <Icon_Button click_func={() => changePage("received")}>
                         <GrMail className='h-6 w-6'/>
                     </Icon_Button>
-                    <Icon_Button>
+                    <Icon_Button click_func={() => changePage("sent")}>
                         <BsSendPlus className='h-6 w-6' />
                     </Icon_Button>
-                    <Icon_Button>
+                    <Icon_Button click_func={() => changePage("checklist")}>
                         <BsListCheck className='h-6 w-6'/>
                     </Icon_Button>
                 </div>
@@ -67,11 +69,10 @@ const Checklist_Page = ({ params }: any) => {
             </div>
         
         </div>
-        
-        <div id="checkboxes" className='flex min-h-screen flex-col justify-start items-center'>
+        <div id="checkboxes" className='flex min-h-screen flex-col justify-middle items-center mt-40'>
             <label className="block underline text-6xl font-semi-bold mb-8">Warm and Fuzzies</label>
-            <span className="p-0 opacity-70 mt-3">Once you have completed your Warm & Fuzzies for someone, check them off here!</span>
-            <CheckList/>
+        {pageState === "checklist" && <CheckList/>}
+        {pageState === "sent" && <SendNotes/>}
         </div>
         </div>
     )

@@ -19,7 +19,7 @@ export default function Home() {
     const displayName = result?.user.displayName;
     const email = result?.user.email;
     const uid = result?.user.uid;
-    await addData("users", uid, {"name":displayName, "email":email})
+    await addData("users", uid, {"name":displayName, "email":email, "received": {}, "sent": {}})
     return router.push(`user-pages/checklist/${uid}`)
   }
 
@@ -43,7 +43,7 @@ export default function Home() {
         border-solid border-4 border-transparent 
         hover:opacity-80
         active:opacity-50
-         flex-shrink-0
+        flex-shrink-0
         transition-all duration-75 ease-in-out
         "
         onClick={()=> {router.push("/leaderboard")}}>

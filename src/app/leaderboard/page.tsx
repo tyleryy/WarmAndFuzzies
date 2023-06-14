@@ -15,7 +15,9 @@ const leaderboard = () => {
                 active:opacity-50
                 flex-shrink-0 
                 transition-all duration-75 ease-in-out inline" onClick={() => router.push("/")}>Back</button>
-            <span className='block ml-20 mt-5 opacity-60 text-center text-xs'>Complete your Warm & Fuzzies and check off your boxes to appear on the Leaderboard!</span>
+            <span className='text-center block ml-20 mt-5 opacity-60 text-center text-xs'>
+                Complete your Warm & Fuzzies to appear on the Leaderboard!
+            </span>
             <Leaderboard/>
         </div>
     )
