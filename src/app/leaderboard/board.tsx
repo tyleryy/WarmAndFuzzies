@@ -54,7 +54,7 @@ import Box from '@mui/material/Box';
           const top_three : any = result.output.slice(0,3)
           // const names = top_three.map((elem) => { return elem.user})
           // const no_names = top_three.map((elem) => { return elem.data})
-          console.log(top_three)
+          // console.log(top_three)
           setLeaders(top_three)
         }
       }

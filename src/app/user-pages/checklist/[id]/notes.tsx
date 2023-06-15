@@ -25,17 +25,18 @@ export default function SendNotes() {
 
     const submitText = async (event: any) => {
        
-        if (text === "") {
-            alert("Where's your heartfelt message?");
-            return;
-        } else if (selectedUser === "") {
-            alert("Who are you writing to?");
-            return;
-        }
+        if (text === "")
+            return alert("Where's your heartfelt message?");
+        else if (selectedUser === "")
+            return alert("Who are you writing to?");
         let {result, error} = await getDocument("users", selectedUser);
+        if (selectedUser === user.uid)
+            return alert("Can't send message to yourself, dum dum")
 
         updateData("users", selectedUser, "received", user.displayName, text);
-        updateData("users", user.uid, "sent", result?.name, text)
+        updateData("users", user.uid, "sent", result?.name, text);
+        changeText("");
+        alert("Sent Warm and Fuzzies!")
     }
 
     interface userRecord {
@@ -51,9 +52,7 @@ export default function SendNotes() {
         if (error) {
             return console.log(error);
         }
-        // for (let index = 0; index < 100; index++) {
-        //     result.push({"name": "HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII", "id": "HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"})
-        // }
+
         changeUsers(result.map((elem: userRecord) => {return {"name": elem.name, "id":elem.id}}))
 	};
 

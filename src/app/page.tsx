@@ -2,6 +2,7 @@
 import {signUp} from "@/firebase/auth/signup"
 import {useRouter} from 'next/navigation'
 import addData from '@/firebase/firestore/addData'
+import getData from '@/firebase/firestore/getData'
 import Image from 'next/image'
 import Cube3D from "./cube"
 import { Canvas } from '@react-three/fiber'
@@ -13,14 +14,16 @@ export default function Home() {
 
   const handleSignIn = async (event: any) => {
     event.preventDefault();
-    let {result, error} = await signUp();
+    let {result, error}: any = await signUp();
     if (error)
       return console.error(error);
     const displayName = result?.user.displayName;
     const email = result?.user.email;
     const uid = result?.user.uid;
-    await addData("users", uid, {"name":displayName, "email":email, "received": {}, "sent": {}})
-    return router.push(`user-pages/checklist/${uid}`)
+    ({result, error} = await getData("users", uid));
+    if (result === undefined)
+      await addData("users", uid, {"name":displayName, "email":email, "received": {}, "sent": {}});
+    return router.push(`user-pages/checklist/${uid}`);
   }
 
   return (

@@ -8,6 +8,7 @@ import {GrMail} from 'react-icons/gr'
 import {BsSendPlus, BsListCheck} from 'react-icons/bs'
 import Icon_Button from './icon_button';
 import SendNotes from './notes';
+import ReceivedList from './received';
 
 
 
@@ -73,6 +74,7 @@ const Checklist_Page = ({ params }: any) => {
             <label className="block underline text-6xl font-semi-bold mb-8">Warm and Fuzzies</label>
         {pageState === "checklist" && <CheckList/>}
         {pageState === "sent" && <SendNotes/>}
+        {pageState === "received" && <ReceivedList/>}
         </div>
         </div>
     )

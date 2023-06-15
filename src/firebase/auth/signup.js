@@ -8,7 +8,7 @@ export async function signUp() {
     let result = null,
         error = null;
     try {
-        result = await signInWithPopup(auth, provider)
+        result = await signInWithPopup(auth, provider);
     } catch (e) {
         error = e;
     }
