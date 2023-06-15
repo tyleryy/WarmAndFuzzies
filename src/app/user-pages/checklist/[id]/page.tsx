@@ -23,7 +23,6 @@ const Checklist_Page = ({ params }: any) => {
 
     useEffect(() => {
         if (user===null) {
-            // console.log("Sign out redirect triggered");
             router.push("/");
         } else {
             changeUsername(user?.displayName);

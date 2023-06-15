@@ -36,12 +36,7 @@ function CheckList() {
 
   type checkbox = {id: number, label: string, color: string, checked: boolean}
 
-  // useEffect( ()=> {
-  //   console.log(checkedItems)
-  // }, [checkedItems])
-
   const handleCheckboxChange = (event: any) => {
-    // console.log(event.target);
     const { id, checked } = event.target;
     setCheckBoxes((prevCheckedItems) => {
       let checkbox: any = prevCheckedItems.find((elem: checkbox ) => {

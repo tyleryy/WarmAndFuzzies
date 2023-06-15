@@ -41,10 +41,8 @@ export async function getAllMembers(collect) {
         // user has doc_id first
         // checklist = each pure warm and fuzzies doc (each checkmark)
         result = result.docs.map((doc) => {return {"checklist": doc.data(), "user": doc.id}}) 
-        // console.log(result) 
 
         for (let doc of result) { // ! async calls don't work in a forEach loop, so opted for traditional
-            // console.log(doc)
             let user_data = (await getDocument("users",doc.user)).result;
             user_data["uid"] = doc.id;
             // user data = Google auth creds
@@ -57,7 +55,6 @@ export async function getAllMembers(collect) {
             output.push(
                 payload
             )
-            // console.log(output)   
         }
 
     } catch (e) {
@@ -69,6 +66,5 @@ export async function getAllMembers(collect) {
     output?.sort((elem, elem2) => { return elem2.data.length - elem.data.length})
     if (output.length >= 2)
         [output[0], output[1]] = [output[1], output[0]]
-    // console.log(output)
     return {output, error};
 }

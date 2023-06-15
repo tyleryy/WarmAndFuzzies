@@ -52,19 +52,13 @@ import Box from '@mui/material/Box';
         const result : void | { output: any[], error: null } = await getAllMembers("warm-fuzzies");
         if (result) {
           const top_three : any = result.output.slice(0,3)
-          // const names = top_three.map((elem) => { return elem.user})
-          // const no_names = top_three.map((elem) => { return elem.data})
-          // console.log(top_three)
           setLeaders(top_three)
         }
       }
 
       getLeaders()
     }, [])
-    // useEffect(() => {
-    //   console.log(leaders)
-    //   setnames(leaders.map((elem) => elem.label))
-    // }, [leaders])
+
     
   return (
     <div className='inline relative top-8'>
