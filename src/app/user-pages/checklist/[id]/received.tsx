@@ -1,19 +1,29 @@
 import { useAuthContext } from '@/context/AuthContext'
 import getData from '@/firebase/firestore/getData';
 import { useEffect, useState } from 'react';
-import Message from './message';
+import GridLayout from './grid_layout';
 
 
-const ReceivedList = () => {
+const ReceivedList = ({label}: any) => {
     
     const user : any = useAuthContext();
-    const [received, setReceived] = useState({});
+    const [received, setReceived] = useState([]);
+    const [sent, setSent] = useState([]);
 
     const getReceived = async () => {
         let {result, error}: any = await getData("users", user.uid);
         if (error)
             return console.log(error);
-        setReceived(result.received);
+        let received_list: any = [];
+        let sent_list: any = [];
+        Object.entries(result.received).forEach(([key, value]) => {
+            received_list.push({"user": key, "message": value});
+        })
+        Object.entries(result.sent).forEach(([key, value]) => {
+            sent_list.push({"user": key, "message": value});
+        })
+        setReceived(received_list);
+        setSent(sent_list);
     }
 
     useEffect(() => {
@@ -23,15 +33,15 @@ const ReceivedList = () => {
 
     return (
         <div>
-            {
-                Object.keys(received).length > 0 ? 
-                <div className='grid grid-cols-3 space-x-8 space-y-5 m-3'>
-                    {Object.entries(received).map(([key, value], index) => {
-                        return <Message user={key} message={value} key={index}/>
-                    })}
-                </div>
+        {label === "Received" ?
+                received.length > 0 ? 
+                <GridLayout item_list={received}/>
                 : <span>No Warm and Fuzzies received yet</span>
-            }
+            :
+                sent.length > 0 ? 
+                <GridLayout item_list={sent}/>
+                : <span>No Warm and Fuzzies sent yet</span> 
+        }
         </div>
     )
 }

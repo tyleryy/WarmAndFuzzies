@@ -9,6 +9,7 @@ import {BsSendPlus, BsListCheck} from 'react-icons/bs'
 import Icon_Button from './icon_button';
 import SendNotes from './notes';
 import ReceivedList from './received';
+import { Switch, FormControlLabel } from '@mui/material';
 
 
 
@@ -18,6 +19,7 @@ const Checklist_Page = ({ params }: any) => {
     const user : any = useAuthContext();
     const [username, changeUsername] = useState("");
     const [pageState, changePage] = useState("checklist");
+    const [label, setLabel] = useState("Received")
 
     useEffect(() => {
         if (user===null) {
@@ -27,6 +29,13 @@ const Checklist_Page = ({ params }: any) => {
             changeUsername(user?.displayName);
         }
     }, [user])
+
+    const handleLabelChange = () => {
+        if (label === "Received")
+            setLabel("Sent");
+        else
+            setLabel("Received");
+    }
 
     // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     
@@ -41,7 +50,7 @@ const Checklist_Page = ({ params }: any) => {
                     <Icon_Button click_func={() => changePage("received")}>
                         <GrMail className='h-6 w-6'/>
                     </Icon_Button>
-                    <Icon_Button click_func={() => changePage("sent")}>
+                    <Icon_Button click_func={() => changePage("send")}>
                         <BsSendPlus className='h-6 w-6' />
                     </Icon_Button>
                     <Icon_Button click_func={() => changePage("checklist")}>
@@ -68,13 +77,18 @@ const Checklist_Page = ({ params }: any) => {
                     onClick={signOutUser}>Sign Out</button>
                 </div>
             </div>
-        
         </div>
+        {pageState === "received" &&
+            <div className="m-3 bg-gray-500 w-40 bg-opacity-30 border border-gray-600 p-2">
+                <FormControlLabel control={<Switch defaultChecked onChange={handleLabelChange}/>} label={label} />
+            </div>
+        }
+
         <div id="checkboxes" className='flex min-h-screen flex-col justify-middle items-center mt-40'>
             <label className="block underline text-6xl font-semi-bold mb-8">Warm and Fuzzies</label>
         {pageState === "checklist" && <CheckList/>}
-        {pageState === "sent" && <SendNotes/>}
-        {pageState === "received" && <ReceivedList/>}
+        {pageState === "send" && <SendNotes/>}
+        {pageState === "received" && <ReceivedList label={label}/>}
         </div>
         </div>
     )
