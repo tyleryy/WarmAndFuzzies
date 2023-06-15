@@ -7,21 +7,13 @@ import { updateData } from "@/firebase/firestore/addData";
 
 
 export default function SendNotes() {
-    // const [first_col, changeFirstCol] = useState([]);
-	// const [second_col, changeSecondCol] = useState([]);
-	// const [third_col, changeThirdCol] = useState([]);
+
     const user : any = useAuthContext();
     const [users, changeUsers] = useState([]);
     const [text, changeText] = useState("");
     const [selectedUser, changeSelectedUser] = useState("");
 
     const colors = ["yellow", "red", "#03a9f4", "green"]
-
-    // const updateQuotes = (quote_list: any) => {
-	// 	changeFirstCol(quote_list.slice(0, quote_list.length/3));
-	// 	changeSecondCol(quote_list.slice(quote_list.length/3, 2*(quote_list.length/3)));
-	// 	changeThirdCol(quote_list.slice(2*quote_list.length/3));
-	// }
 
     const submitText = async (event: any) => {
        

@@ -35,9 +35,7 @@ const Checklist_Page = ({ params }: any) => {
         else
             setLabel("Received");
     }
-
-    // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-    
+        
     return (
         <div>
 

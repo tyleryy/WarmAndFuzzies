@@ -11,8 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { getAllMembers } from '@/firebase/firestore/getData';
 import { useEffect, useState } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+
 
   export const options = {
     responsive: true,
@@ -46,7 +45,6 @@ import Box from '@mui/material/Box';
   const Leaderboard = () => {
     const [leaders, setLeaders] = useState([]);
 
-    // type checkbox = {id: number, label: string, color: string, checked: boolean}
     useEffect(() => {
       const getLeaders = async () => {
         const result : void | { output: any[], error: null } = await getAllMembers("warm-fuzzies");
@@ -79,11 +77,6 @@ import Box from '@mui/material/Box';
         ],
       }}>
       </Bar> 
-      {/* // : 
-      //   <div className="flex flex-row justify-center items-center h-96">
-      //         <CircularProgress/>
-      //   </div>} */}
-      
     </div>
   )
 }

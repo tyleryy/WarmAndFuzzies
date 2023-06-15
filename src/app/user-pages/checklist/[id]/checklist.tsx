@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { User } from 'firebase/auth';
 
 function CheckList() {
-  // const [checkedItems, setCheckedItems] = useState([]);
   const [checkboxes, setCheckBoxes] = useState([]);
   const user : any = useAuthContext();
 
