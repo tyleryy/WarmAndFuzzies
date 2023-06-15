@@ -63,7 +63,7 @@ export default function SendNotes() {
                 name="radio-buttons-group"
                 value={selectedUser}
                 onChange={(event) => changeSelectedUser(event.target.value)}>
-                {users.map((elem: string, index: number) => (
+                {users.map((elem: any, index: number) => (
                     <FormControlLabel key={index} value={elem.id} control={<Radio sx={{"color": colors[index%colors.length], 
                     '&.Mui-checked': {"color": colors[index%colors.length]}}}/>} label={elem.name} />
                 ))
