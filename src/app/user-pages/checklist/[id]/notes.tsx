@@ -1,13 +1,16 @@
 'use client'
 import { useEffect, useState } from "react";
-import {getAllDocs} from '@/firebase/firestore/getData';
+import getDocument, {getAllDocs} from '@/firebase/firestore/getData';
+import { useAuthContext } from "@/context/AuthContext";
 import { TextField, Button, FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { updateData } from "@/firebase/firestore/addData";
 
 
 export default function SendNotes() {
     // const [first_col, changeFirstCol] = useState([]);
 	// const [second_col, changeSecondCol] = useState([]);
 	// const [third_col, changeThirdCol] = useState([]);
+    const user : any = useAuthContext();
     const [users, changeUsers] = useState([]);
     const [text, changeText] = useState("");
     const [selectedUser, changeSelectedUser] = useState("");
@@ -20,7 +23,8 @@ export default function SendNotes() {
 	// 	changeThirdCol(quote_list.slice(2*quote_list.length/3));
 	// }
 
-    const submitText = (event: any) => {
+    const submitText = async (event: any) => {
+       
         if (text === "") {
             alert("Where's your heartfelt message?");
             return;
@@ -28,7 +32,10 @@ export default function SendNotes() {
             alert("Who are you writing to?");
             return;
         }
+        let {result, error} = await getDocument("users", selectedUser);
 
+        updateData("users", selectedUser, "received", user.displayName, text);
+        updateData("users", user.uid, "sent", result?.name, text)
     }
 
     interface userRecord {

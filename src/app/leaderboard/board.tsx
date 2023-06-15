@@ -69,7 +69,8 @@ import Box from '@mui/material/Box';
   return (
     <div className='inline relative top-8'>
 
-      {leaders.length > 0 ? <Bar className=' bg-gray-300 bg-opacity-20 text-white m-10 border-white
+      {/* { */}
+        <Bar className=' bg-gray-300 bg-opacity-20 text-white m-10 border-white
        border-2 border-opacity-50 rounded-sm border-double' options={options} data={{
         labels: leaders.map((elem: any)=> elem.user_data.name),
         datasets: [
@@ -83,10 +84,11 @@ import Box from '@mui/material/Box';
           },
         ],
       }}>
-      </Bar> : 
-        <div className="flex flex-row justify-center items-center h-96">
-              <CircularProgress/>
-        </div>}
+      </Bar> 
+      {/* // : 
+      //   <div className="flex flex-row justify-center items-center h-96">
+      //         <CircularProgress/>
+      //   </div>} */}
       
     </div>
   )
