@@ -1,11 +1,11 @@
 'use client'
-import { useAuthContext } from '@/context/AuthContext'
+import { useAuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { signOutUser} from '@/firebase/auth/signup'
+import { signOutUser} from '@/firebase/auth/signup';
 import { useEffect, useState } from 'react';
 import CheckList from './checklist';
-import {GrMail} from 'react-icons/gr'
-import {BsSendPlus, BsListCheck} from 'react-icons/bs'
+import {GrMail} from 'react-icons/gr';
+import {BsSendPlus, BsListCheck} from 'react-icons/bs';
 import Icon_Button from './icon_button';
 import SendNotes from './notes';
 import ReceivedList from './received';

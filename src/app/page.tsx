@@ -84,7 +84,7 @@ export default function Home() {
         </Canvas>
         <span className="flex justify-center text-gray-50 
           opacity-30 text-sm relative"
-          >Click the Cube!
+          >Click and Drag the Cube!
         </span>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import { getAuth } from "firebase/auth";
 import firebase_app from "../config";
 import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore";
 
@@ -43,8 +42,9 @@ export async function getAllMembers(collect) {
         result = result.docs.map((doc) => {return {"checklist": doc.data(), "user": doc.id}}) 
 
         for (let doc of result) { // ! async calls don't work in a forEach loop, so opted for traditional
+            
             let user_data = (await getDocument("users",doc.user)).result;
-            user_data["uid"] = doc.id;
+            user_data["uid"] = doc.user;
             // user data = Google auth creds
             // checklist = only checked marked boxes
             let payload = {"data": doc.checklist.data.filter((elem) => {
