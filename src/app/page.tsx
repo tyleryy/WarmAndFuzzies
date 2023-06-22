@@ -4,7 +4,9 @@ import {useRouter} from 'next/navigation'
 import addData from '@/firebase/firestore/addData'
 import getData from '@/firebase/firestore/getData'
 import Image from 'next/image'
-import Cube3D from "./cube"
+// import Cube3D from "./cube"
+// import HackLogo from "./hack"
+import HackLogoV2 from "./hacklogo2"
 import { Canvas } from '@react-three/fiber'
 
 
@@ -80,11 +82,11 @@ export default function Home() {
               position: [0, 0, -10]
             }}
           >
-          <Cube3D/>
+          <HackLogoV2/>
         </Canvas>
         <span className="flex justify-center text-gray-50 
           opacity-30 text-sm relative"
-          >Click and Drag the Cube!
+          >Click and Drag!
         </span>
       </div>
     </div>
