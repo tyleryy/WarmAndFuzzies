@@ -65,14 +65,14 @@ export default function Home() {
         " onClick={handleSignIn}>Sign up</button>
       </div>
     </div>
-    <div className="flex relative flex-shrink flex-col bottom-60 z-0 items-center">
+    <div className="flex relative flex-shrink flex-col bottom-60 items-center">
       <Image
         src="/logo.png"
-        height={400}
+        height={200}
         width={800}
         alt="logo"
       />
-      <div className="relative flex-shrink left-16 block z-10 bottom-56 h-screen w-screen min-w-96 max-h-96">
+      <div className="flex-shrink inset-0 block z-10 fixed w-screen h-screen">
         <Canvas 
               camera={{
               fov: 75,
@@ -84,7 +84,7 @@ export default function Home() {
           >
           <HackLogoV2/>
         </Canvas>
-        <span className="flex justify-center text-gray-50 
+        <span className="flex z-10 justify-center text-gray-50 
           opacity-30 text-sm relative"
           >Click and Drag!
         </span>

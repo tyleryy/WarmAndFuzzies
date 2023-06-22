@@ -1,15 +1,20 @@
 
 import useSpline from '@splinetool/r3f-spline'
-import { OrthographicCamera, PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { OrthographicCamera, PerspectiveCamera, OrbitControls, Sky, Stars } from '@react-three/drei'
 import { useRef, Suspense, useState} from 'react'
 
 export default function HackLogoV2({ ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/FrkCjMUiS99NDkc7/scene.splinecode')
+
+  const [rotate, setRotate] = useState(true);
   return (
     <>
     <Suspense fallback={null}>
-        <color attach="background" args={['#000000']} />
-      <group {...props} dispose={null}>
+        {/* <Sky/>
+        <color attach="background" args={['#000000']} /> */}
+        
+      <group {...props} dispose={null} onClick={e => setRotate(false)} position={[0,-10,0]}>
+        <Stars radius={100} depth={10} count={5000} fade factor={15} saturation={0} speed={1}/>
         <directionalLight
           name="Directional Light 2"
           castShadow
@@ -86,9 +91,10 @@ export default function HackLogoV2({ ...props }) {
           scale={1}
         />
         <hemisphereLight name="Default Ambient Light" intensity={0.75} color="#eaeaea" />
+        <OrbitControls
+                enableZoom={false} autoRotate={rotate}/>
       </group>
-      <OrbitControls
-                enableZoom={false} autoRotate={true}/>
+      
         </Suspense>
     </>
   )
