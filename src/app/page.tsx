@@ -42,7 +42,7 @@ export default function Home() {
       </div> */}
       <div className="wrapper flex flex-row 
       justify-around space-x-8 m-2 p-3
-      w-1/6 mr-2 relative right-10">
+      w-1/6 mr-2 relative right-10 z-20">
         <button className=" bg-white text-black 
         px-3.5 p-2.5 rounded-full
         border-solid border-4 border-transparent 
@@ -57,7 +57,7 @@ export default function Home() {
         <button className="sign-up-button
         bg-gray-600 text-white bg-opacity-50
         px-3.5 py-2.5 inline-block rounded-full
-        border-solid border-2 border-transparent z-50
+        border-solid border-2 border-transparent
         hover:border-white
         flex-shrink-0
         active:opacity-50
@@ -72,7 +72,7 @@ export default function Home() {
         width={800}
         alt="logo"
       />
-      <div className="flex-shrink inset-0 block z-10 fixed w-screen h-screen">
+      <div className="flex-shrink inset-0 fixed w-screen h-screen">
         <Canvas 
               camera={{
               fov: 75,
@@ -84,13 +84,8 @@ export default function Home() {
           >
           <HackLogoV2/>
         </Canvas>
-
-        {/* ! Not showing for some reason */}
-        <span className="flex z-50 justify-center text-gray-50 
-          opacity-30 text-sm relative"
-          >Click and Drag!
-        </span>
       </div>
+      
     </div>
     
    </main>
