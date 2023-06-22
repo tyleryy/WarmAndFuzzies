@@ -16,10 +16,50 @@ export default function HackLogoV2({ ...props }) {
       <group {...props} dispose={null} onClick={e => setRotate(false)} position={[0,-10,0]}>
         <Stars radius={100} depth={30} count={5000} factor={10} saturation={0} speed={1}/>
         <Sparkles
+            color="teal"
+            count={80}
+            noise={1}
+            size={300}
+            opacity={1}
+            speed={1.8}
+            scale={180}
+            position={[0, 0, 0]}
+        />
+        <Sparkles
             color="orange"
+            count={80}
+            noise={1}
+            size={800}
+            opacity={1}
+            speed={1.8}
+            scale={180}
+            position={[0, 0, 0]}
+        />
+        <Sparkles
+            color="red"
+            count={80}
+            noise={1}
+            size={300}
+            opacity={1}
+            speed={1.8}
+            scale={180}
+            position={[0, 0, 0]}
+        />
+        <Sparkles
+            color="purple"
             count={100}
             noise={1}
-            size={1000}
+            size={500}
+            opacity={1}
+            speed={1.8}
+            scale={180}
+            position={[0, 0, 0]}
+        />
+        <Sparkles
+            color="green"
+            count={80}
+            noise={1}
+            size={500}
             opacity={1}
             speed={1.8}
             scale={180}
