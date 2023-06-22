@@ -32,14 +32,14 @@ export default function Home() {
     <main className="flex min-h-screen flex-col justify-start items-center">
     <div className="navbar
     z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1">
-      <div className="absolute left-20 hover:animate-spin animate-pulse">
+      {/* <div className="absolute left-20 hover:animate-spin animate-pulse">
         <Image 
           src="/hacklogo.svg"
           width={80}
           height={80}
           alt="Hack at UCI logo"
         />
-      </div>
+      </div> */}
       <div className="wrapper flex flex-row 
       justify-around space-x-8 m-2 p-3
       w-1/6 mr-2 relative right-10">
@@ -84,7 +84,9 @@ export default function Home() {
           >
           <HackLogoV2/>
         </Canvas>
-        <span className="flex z-10 justify-center text-gray-50 
+
+        {/* ! Not showing for some reason */}
+        <span className="flex z-50 justify-center text-gray-50 
           opacity-30 text-sm relative"
           >Click and Drag!
         </span>

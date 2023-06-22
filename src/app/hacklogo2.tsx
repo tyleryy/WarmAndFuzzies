@@ -1,6 +1,6 @@
 
 import useSpline from '@splinetool/r3f-spline'
-import { OrthographicCamera, PerspectiveCamera, OrbitControls, Sky, Stars } from '@react-three/drei'
+import { OrthographicCamera, PerspectiveCamera, OrbitControls, Stars, Sparkles } from '@react-three/drei'
 import { useRef, Suspense, useState} from 'react'
 
 export default function HackLogoV2({ ...props }) {
@@ -14,7 +14,25 @@ export default function HackLogoV2({ ...props }) {
         <color attach="background" args={['#000000']} /> */}
         
       <group {...props} dispose={null} onClick={e => setRotate(false)} position={[0,-10,0]}>
-        <Stars radius={100} depth={10} count={5000} fade factor={15} saturation={0} speed={1}/>
+        <Stars radius={100} depth={30} count={5000} factor={10} saturation={0} speed={1}/>
+        <Sparkles
+            color="orange"
+            count={100}
+            noise={1}
+            size={1000}
+            opacity={1}
+            speed={1.8}
+            scale={180}
+            position={[0, 0, 0]}
+        />
+        {/* <Cloud
+            opacity={0.8}
+            speed={0.4} // Rotation speed
+            width={10} // Width of the full cloud
+            depth={1} // Z-dir depth
+            segments={50} // Number of particles
+            position={[0,-15,0]}
+            /> */}
         <directionalLight
           name="Directional Light 2"
           castShadow
@@ -92,7 +110,7 @@ export default function HackLogoV2({ ...props }) {
         />
         <hemisphereLight name="Default Ambient Light" intensity={0.75} color="#eaeaea" />
         <OrbitControls
-                enableZoom={false} autoRotate={rotate}/>
+                enableZoom={false} autoRotate={rotate} enablePan={false}/>
       </group>
       
         </Suspense>
