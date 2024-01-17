@@ -11,13 +11,11 @@ import { Canvas } from "@react-three/fiber";
 import SparklesCore from "./components/sparkles";
 import { BackgroundBeams } from "@/app/components/background-beams";
 import { Button } from "./components/moving-border";
-import LandscapeIcon from "@mui/icons-material/Landscape";
 
 function SparklesPreview() {
   return (
     <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
-        <LandscapeIcon className="text-white md:text-9xl lg:text-9xl text-4xl inline" />
         Warm and Fuzzies
       </h1>
       <div className="w-full h-40 relative">
@@ -69,19 +67,8 @@ export default function Home() {
     <main className="flex min-h-screen flex-col justify-start items-center">
       <div
         className="navbar
-    z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1"
+    z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1 mr-10 gap-1"
       >
-        <div className="absolute left-20">
-          <a href="https://hack.ics.uci.edu/">
-            <Image
-              src="/hacklogo.svg"
-              width={80}
-              height={80}
-              alt="Hack at UCI logo"
-            />
-          </a>
-        </div>
-
         <div
           className="wrapper flex flex-row 
       justify-around space-x-8 m-2 p-3
@@ -109,6 +96,16 @@ export default function Home() {
           >
             Sign up
           </button>
+          <div className="ml-10 mr-5">
+            <a href="https://hack.ics.uci.edu/">
+              <Image
+                src="/hacklogo.svg"
+                width={80}
+                height={80}
+                alt="Hack at UCI logo"
+              />
+            </a>
+          </div>
         </div>
       </div>
       <SparklesPreview></SparklesPreview>
