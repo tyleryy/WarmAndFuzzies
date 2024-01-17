@@ -11,8 +11,9 @@ import { Canvas } from "@react-three/fiber";
 import SparklesCore from "./components/sparkles";
 import { BackgroundBeams } from "@/app/components/background-beams";
 import { Button } from "./components/moving-border";
+import { motion } from "framer-motion";
 
-function SparklesPreview() {
+function SparklesPreview({ on }: { on: boolean }) {
   return (
     <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
@@ -26,14 +27,16 @@ function SparklesPreview() {
         <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px" />
 
         {/* Core component */}
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={100}
-          className="w-auto h-auto"
-          particleColor="#FFFFFF"
-        />
+        {on && (
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={1}
+            particleDensity={100}
+            className="w-auto h-auto"
+            particleColor="#FFFFFF"
+          />
+        )}
 
         {/* Radial Gradient to prevent sharp edges */}
         <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
@@ -74,28 +77,20 @@ export default function Home() {
       justify-around space-x-8 m-2 p-3
        min-w-1/10 mr-2 relative z-20"
         >
+          <button
+            onClick={handleSignIn}
+            className=" max-h-14 px-8 mt-[6px] rounded-md bg-sky-600 bg-opacity-30 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
+          >
+            LeaderBoard
+          </button>
+
           <Button
             onClick={() => {
               router.push("/leaderboard");
             }}
           >
-            LeaderBoard
+            <strong>Sign In</strong>
           </Button>
-
-          <button
-            className="sign-up-button
-        bg-gray-600 text-white bg-opacity-50
-        px-3.5 py-2.5 inline-block rounded-full
-        border-solid border-2 border-transparent
-        hover:border-white
-        flex-shrink-0
-        active:opacity-50
-        transition-all duration-300 ease-in-out
-        "
-            onClick={handleSignIn}
-          >
-            Sign up
-          </button>
           <div className="ml-10 mr-5">
             <a href="https://hack.ics.uci.edu/">
               <Image
@@ -108,23 +103,23 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SparklesPreview></SparklesPreview>
+      <SparklesPreview on={false}></SparklesPreview>
 
-      {/* <div className="inset-0 fixed w-screen h-screen"> */}
-      {/* <Canvas
-        className=""
-        camera={{
-          fov: 75,
-          near: 0.1,
-          far: 1000,
-          zoom: 8,
-          position: [0, 0, -10],
-        }}
-      >
-        <HackLogoV2 />
-      </Canvas> */}
-      {/* </div> */}
-      <BackgroundBeams></BackgroundBeams>
+      <div className="inset-0 fixed w-screen h-screen">
+        <Canvas
+          className=""
+          camera={{
+            fov: 75,
+            near: 0.1,
+            far: 1000,
+            zoom: 8,
+            position: [0, 0, -10],
+          }}
+        >
+          <HackLogoV2 />
+        </Canvas>
+      </div>
+      {/* <BackgroundBeams></BackgroundBeams> */}
     </main>
   );
 }
