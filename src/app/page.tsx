@@ -10,9 +10,10 @@ import HackLogoV2 from "./hacklogo2";
 import { Canvas } from "@react-three/fiber";
 import SparklesCore from "./components/sparkles";
 import { BackgroundBeams } from "@/app/components/background-beams";
+import { Button } from "./components/moving-border";
 import LandscapeIcon from "@mui/icons-material/Landscape";
 
-export function SparklesPreview() {
+function SparklesPreview() {
   return (
     <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
@@ -86,21 +87,14 @@ export default function Home() {
       justify-around space-x-8 m-2 p-3
        min-w-1/10 mr-2 relative z-20"
         >
-          <button
-            className=" bg-white text-black 
-        px-3.5 p-2.5 rounded-full
-        border-solid border-4 border-transparent 
-        hover:opacity-80
-        active:opacity-50
-        transition-all duration-75 ease-in-out
-        max-w-1/12
-        "
+          <Button
             onClick={() => {
               router.push("/leaderboard");
             }}
           >
-            Leaderboard
-          </button>
+            LeaderBoard
+          </Button>
+
           <button
             className="sign-up-button
         bg-gray-600 text-white bg-opacity-50
