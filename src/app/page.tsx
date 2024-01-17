@@ -47,7 +47,7 @@ export default function Home() {
         <div
           className="wrapper flex flex-row 
       justify-around space-x-8 m-2 p-3
-      w-1/6 mr-2 relative right-10 z-20"
+       min-w-1/10 mr-2 relative z-20"
         >
           <button
             className=" bg-white text-black 
@@ -55,8 +55,8 @@ export default function Home() {
         border-solid border-4 border-transparent 
         hover:opacity-80
         active:opacity-50
-        flex-shrink-0
         transition-all duration-75 ease-in-out
+        max-w-1/12
         "
             onClick={() => {
               router.push("/leaderboard");
@@ -80,8 +80,14 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="flex relative flex-shrink flex-col bottom-60 items-center">
-        <Image src="/logo.png" height={200} width={800} alt="logo" />
+      <div className="flex relative flex-shrink-0 flex-col">
+        <Image
+          className="min-w-1/6 min-h-1/5"
+          src="/logo.png"
+          height={200}
+          width={800}
+          alt="logo"
+        />
         <div className="flex-shrink inset-0 fixed w-screen h-screen">
           <Canvas
             camera={{
