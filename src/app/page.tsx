@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 
 function SparklesPreview({ on }: { on: boolean }) {
   return (
-    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-start overflow-hidden rounded-md">
       <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
         Warm and Fuzzies
       </h1>
@@ -67,10 +67,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col justify-start items-center">
+    <main className=" min-h-screen justify-start items-center overflow-hidden">
       <div
         className="navbar
-    z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1 mr-10 gap-1"
+    z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1 mr-10"
       >
         <div
           className="wrapper flex flex-row 
@@ -78,20 +78,18 @@ export default function Home() {
        min-w-1/10 mr-2 relative z-20"
         >
           <button
-            onClick={handleSignIn}
-            className=" max-h-14 px-8 mt-[6px] rounded-md bg-sky-600 bg-opacity-30 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
+            onClick={() => {
+              router.push("/leaderboard");
+            }}
+            className=" max-h-14 px-4 mt-[6px] rounded-md bg-sky-600 bg-opacity-30 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
           >
             LeaderBoard
           </button>
 
-          <Button
-            onClick={() => {
-              router.push("/leaderboard");
-            }}
-          >
+          <Button onClick={handleSignIn}>
             <strong>Sign In</strong>
           </Button>
-          <div className="ml-10 mr-5">
+          {/* <div className="ml-10 mr-5">
             <a href="https://hack.ics.uci.edu/">
               <Image
                 src="/hacklogo.svg"
@@ -100,7 +98,7 @@ export default function Home() {
                 alt="Hack at UCI logo"
               />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
       <SparklesPreview on={false}></SparklesPreview>
