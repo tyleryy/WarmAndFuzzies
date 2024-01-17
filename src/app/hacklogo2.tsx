@@ -26,10 +26,10 @@ export default function HackLogoV2({ ...props }) {
           onClick={(e) => setRotate(false)}
           position={[0, -10, 0]}
         >
-          <Stars
+          {/* <Stars
             radius={100}
             depth={30}
-            count={5000}
+            count={2500}
             factor={10}
             saturation={0}
             speed={1}
@@ -83,7 +83,7 @@ export default function HackLogoV2({ ...props }) {
             speed={1.8}
             scale={180}
             position={[0, 0, 0]}
-          />
+          /> */}
           {/* <Cloud
             opacity={0.8}
             speed={0.4} // Rotation speed

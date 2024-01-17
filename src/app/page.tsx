@@ -8,7 +8,40 @@ import Image from "next/image";
 // import HackLogo from "./hack"
 import HackLogoV2 from "./hacklogo2";
 import { Canvas } from "@react-three/fiber";
-import SparklesCore from "@/components/sparkles";
+import SparklesCore from "./components/sparkles";
+import { BackgroundBeams } from "@/app/components/background-beams";
+import LandscapeIcon from "@mui/icons-material/Landscape";
+
+export function SparklesPreview() {
+  return (
+    <div className="h-[40rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-white relative z-20">
+        <LandscapeIcon className="text-white md:text-9xl lg:text-9xl text-4xl inline" />
+        Warm and Fuzzies
+      </h1>
+      <div className="w-full h-40 relative">
+        {/* Gradients */}
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px]  blur-sm" />
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] blur-sm" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px" />
+
+        {/* Core component */}
+        <SparklesCore
+          background="transparent"
+          minSize={0.4}
+          maxSize={1}
+          particleDensity={100}
+          className="w-auto h-auto"
+          particleColor="#FFFFFF"
+        />
+
+        {/* Radial Gradient to prevent sharp edges */}
+        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const router = useRouter();
@@ -37,14 +70,17 @@ export default function Home() {
         className="navbar
     z-10 min-w-full flex flex-row justify-end mt-3 items-center pt-1"
       >
-        {/* <div className="absolute left-20 hover:animate-spin animate-pulse">
-        <Image 
-          src="/hacklogo.svg"
-          width={80}
-          height={80}
-          alt="Hack at UCI logo"
-        />
-      </div> */}
+        <div className="absolute left-20">
+          <a href="https://hack.ics.uci.edu/">
+            <Image
+              src="/hacklogo.svg"
+              width={80}
+              height={80}
+              alt="Hack at UCI logo"
+            />
+          </a>
+        </div>
+
         <div
           className="wrapper flex flex-row 
       justify-around space-x-8 m-2 p-3
@@ -81,29 +117,23 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="flex relative flex-shrink-0 flex-col">
-        <Image
-          className="min-w-1/6 min-h-1/5"
-          src="/logo.png"
-          height={200}
-          width={800}
-          alt="logo"
-        />
-        <SparklesCore></SparklesCore>
-        <div className="flex-shrink inset-0 fixed w-screen h-screen">
-          <Canvas
-            camera={{
-              fov: 75,
-              near: 0.1,
-              far: 1000,
-              zoom: 8,
-              position: [0, 0, -10],
-            }}
-          >
-            <HackLogoV2 />
-          </Canvas>
-        </div>
-      </div>
+      <SparklesPreview></SparklesPreview>
+
+      {/* <div className="inset-0 fixed w-screen h-screen"> */}
+      {/* <Canvas
+        className=""
+        camera={{
+          fov: 75,
+          near: 0.1,
+          far: 1000,
+          zoom: 8,
+          position: [0, 0, -10],
+        }}
+      >
+        <HackLogoV2 />
+      </Canvas> */}
+      {/* </div> */}
+      <BackgroundBeams></BackgroundBeams>
     </main>
   );
 }

@@ -66,7 +66,7 @@ const SparklesCore = (props: ParticlesProps) => {
               },
             },
             fullScreen: {
-              enable: false,
+              enable: true,
               zIndex: 1,
             },
 
@@ -78,7 +78,7 @@ const SparklesCore = (props: ParticlesProps) => {
                   mode: "push",
                 },
                 onHover: {
-                  enable: false,
+                  enable: true,
                   mode: "repulse",
                 },
                 resize: true as any,
