@@ -8,7 +8,6 @@ import Image from "next/image";
 // import HackLogo from "./hack"
 import HackLogoV2 from "./hacklogo2";
 import { Canvas } from "@react-three/fiber";
-import SparklesCore from "@/components/sparkles";
 
 export default function Home() {
   const router = useRouter();
@@ -89,7 +88,6 @@ export default function Home() {
           width={800}
           alt="logo"
         />
-        <SparklesCore></SparklesCore>
         <div className="flex-shrink inset-0 fixed w-screen h-screen">
           <Canvas
             camera={{
