@@ -13,6 +13,12 @@ import { useEffect, useState } from "react";
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: true,
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
   elements: {
     bar: {
       borderWidth: 10,
@@ -42,6 +48,7 @@ ChartJS.register(
 // TODO possibly use ISR for this leaderboard
 const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const getLeaders = async () => {
@@ -55,30 +62,36 @@ const Leaderboard = () => {
     };
 
     getLeaders();
+    setShow(true);
   }, []);
 
   return (
-    <div className="inline relative top-8">
-      {/* { */}
-      <Bar
-        className=" bg-gray-300 bg-opacity-20 text-white m-10 border-white
+    // <div className="inline relative top-8">
+    <>
+      {show && (
+        <Bar
+          height={"70%"}
+          width={"70%"}
+          className=" bg-gray-300 bg-opacity-20 text-white m-10 border-white
        border-2 border-opacity-50 rounded-sm border-double"
-        options={options}
-        data={{
-          labels: leaders.map((elem: any) => elem.user_data.name),
-          datasets: [
-            {
-              label: "# of Warm&Fuzzies completed",
-              data: leaders.map((elem: any) => elem.data.length),
-              backgroundColor: "rgba(34, 211, 238, 0.8)",
-              borderColor: "black",
-              borderWidth: 2,
-              borderRadius: 5,
-            },
-          ],
-        }}
-      ></Bar>
-    </div>
+          options={options}
+          data={{
+            labels: leaders.map((elem: any) => elem.user_data.name),
+            datasets: [
+              {
+                label: "# of Warm&Fuzzies completed",
+                data: leaders.map((elem: any) => elem.data.length),
+                backgroundColor: "rgba(34, 211, 238, 0.8)",
+                borderColor: "black",
+                borderWidth: 2,
+                borderRadius: 5,
+              },
+            ],
+          }}
+        ></Bar>
+      )}
+    </>
+    // </div>
   );
 };
 
