@@ -77,17 +77,23 @@ export default function Home() {
       justify-around space-x-8 m-2 p-3
        min-w-1/10 mr-2 relative z-20"
         >
-          <button
+          <div className="">
+            Look at this cool 3D logo tho! <br/>
+            Use your mouse to move it around!
+          </div>
+          {/* <button
             onClick={() => {
               router.push("/leaderboard");
             }}
             className=" max-h-14 px-4 mt-[6px] rounded-md bg-sky-600 bg-opacity-30 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
           >
             LeaderBoard
-          </button>
+          </button> */}
 
-          <Button onClick={handleSignIn}>
-            <strong>Sign In</strong>
+          {/* <Button onClick={handleSignIn}>
+           */}
+           <Button>
+            <strong>Site is now archived</strong>
           </Button>
           {/* <div className="ml-10 mr-5">
             <a href="https://hack.ics.uci.edu/">
